@@ -56,6 +56,11 @@ export default defineConfig({
         ]
       },
       { text: '后端', link: '/markdown-examples' },
+      { text: '其他',
+        items:[
+          { text: 'GitHub',link : '/docs/other/github.md'}
+        ]
+      },
       { text: '关于', link: '/docs/about/about' }
     ],
     //siteTitle: '哈哈哈',
