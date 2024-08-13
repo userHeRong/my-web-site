@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base:'my-web-site',
   title: "樱桃小丸子的在线教学网站",
   description: "记录樱桃小丸子的学习日常",
   themeConfig: {
