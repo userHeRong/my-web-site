@@ -6,8 +6,6 @@ outline: deep
 
 VitePress是一个静态站点生成器(SSG)，转为构建快熟、以内容为中心的站点而设计。简言之，获取markdown编写的内容，对其应用主题，并生成可以轻松部署到任何地方的静态HTML页面
 
-
-
 ## 使用场景
 
 + 文档
@@ -58,8 +56,6 @@ nodejs 18及以上版本
 
 ## 路由
 
-
-
 ## 部署
 
 package.json中设置一下脚本
@@ -73,20 +69,21 @@ package.json中设置一下脚本
 }
 ```
 
-#### 构建文档 
+#### 构建文档
+
 `pnpm run docs:build`
 
-#### 预览项目 
+#### 预览项目
+
 `pnpm run docs:preview`
 
-#### 指定端口 
+#### 指定端口
+
 `vitepress preview docs --port 8080`
 
 #### 部署到云端（借助github）
 
 ## 写作
-
-
 
 ## 自定义配置
 
@@ -136,8 +133,6 @@ features:
     details: 要有自己的想法，不要人云亦云
 ```
 
-
-
 ### 其他
 
 #### 标题
@@ -165,8 +160,6 @@ features:
 }
 ```
 
-
-
 #### 导航栏
 
 ```json
@@ -189,8 +182,6 @@ features:
 }
 ```
 
-
-
 #### 社交链接
 
 ```json
@@ -200,8 +191,6 @@ features:
     ],
 }
 ```
-
-
 
 #### 上下文
 
@@ -214,8 +203,6 @@ features:
 }
 ```
 
-
-
 #### 页脚
 
 ```json
@@ -226,8 +213,6 @@ features:
     }
 }
 ```
-
-
 
 #### 本地搜索
 
@@ -272,6 +257,45 @@ sidebar:false ,//关闭侧边栏
 aside: "left", //设置右边侧边栏在左侧显示
 ```
 
+## 补充
 
+[](https://github.com/AZCodingAccount/my-docs-website/tree/master?tab=readme-ov-file#%E8%A1%A5%E5%85%85)
 
+如果你想要配置mermaid支持(这是一个可以使用md语法绘制流程图，饼状图的md扩展),需要按照下面的步骤操作。 安装
 
+```shell
+npm i vitepress-plugin-mermaid mermaid -D
+```
+
+如果使用pnpm，还需要下面的配置改变pnpm的默认行为兼容插件
+
+```shell
+pnpm install --shamefully-hoist
+# 或者在根目录新建.npmrc文件，配置
+shamefully-hoist=true
+```
+
+更改`.vitepress/config.mjs`配置项
+
+1: 导入
+
+```js
+import { withMermaid } from "vitepress-plugin-mermaid";
+```
+
+2: defineConfig—>withMermaid
+
+[![image-20240209000231506](https://camo.githubusercontent.com/3dc17c191de799a429184f5bde16b9f886daf941983723f9bf3d71b9934ba37a/68747470733a2f2f6d792d706963747572652d626564312d313332313130303230312e636f732e61702d6265696a696e672e6d7971636c6f75642e636f6d2f6d7970696374757265732f696d6167652d32303234303230393030303233313530362e706e67)](https://camo.githubusercontent.com/3dc17c191de799a429184f5bde16b9f886daf941983723f9bf3d71b9934ba37a/68747470733a2f2f6d792d706963747572652d626564312d313332313130303230312e636f732e61702d6265696a696e672e6d7971636c6f75642e636f6d2f6d7970696374757265732f696d6167652d32303234303230393030303233313530362e706e67)
+
+3:根配置项下添加
+
+```js
+ mermaid: {
+    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
+  },
+ mermaidPlugin: {
+    class: "mermaid my-class", // set additional css classes for parent container
+  },
+```
+
+可以访问[插件官网](https://emersonbottero.github.io/vitepress-plugin-mermaid/guide/getting-started.html)和[mermaid官网](https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options)获取更多配置信息
